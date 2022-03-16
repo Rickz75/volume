@@ -10,9 +10,24 @@ I wrote this a while ago, and it was originally intended as a learning project f
 
 ## Built With
 
-- Rust and C
+-   Rust and C
+
+## Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/Rickz75/volume.git
+cd volume
+```
+
+1. Build it.
+
+```sh
+cargo build --release
+```
 
 ### Note
 
-- Only linux systems are supported.
-- Anyone is more than welcome to contribute, even more so if you can improve the C code.
+-   Only linux systems are supported.
+-   Anyone is more than welcome to contribute, even more so if you can improve the C code.
