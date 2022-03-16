@@ -27,6 +27,34 @@ cd volume
 cargo build --release
 ```
 
+## Usage
+
+Consider adding the binary to your path, [like so](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path).
+
+Retrieve the master volume.
+
+```sh
+$ volume get
+```
+
+Set the master volume, amount must be between 0 and 100.
+
+```sh
+$ volume set <amount>
+```
+
+Mute the volume
+
+```sh
+$ volume mute
+```
+
+Unmute the volume
+
+```sh
+$ volume unmute
+```
+
 ### Note
 
 -   Only linux systems are supported.
