@@ -29,7 +29,7 @@ cargo build --release
 
 ## Usage
 
-Consider adding the binary to your path, [like so](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path).
+Consider adding the binary to your path.
 
 Retrieve the master volume.
 
