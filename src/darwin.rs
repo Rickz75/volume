@@ -36,6 +36,9 @@ impl From<IoError> for Error {
 ///
 /// Returns an error if volume is less than **0** or greater than **100**.
 pub fn set(volume: i64) -> Result<()> {
+    if volume < 0 || volume > 100 {
+        return Err(Error::InvalidVolume(volume));
+    }
     Command::new("osascript")
         .args(&["-e", &format!("set volume output volume {volume}")])
         .output()?;
