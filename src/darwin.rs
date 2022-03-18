@@ -28,3 +28,13 @@ impl From<IoError> for Error {
         Error::Io(e)
     }
 }
+
+/// Sets the master volume for this system.
+///
+/// Returns an error if volume is less than **0** or greater than **100**.
+pub fn set(volume: i64) -> Result<()> {
+    Command::new("osascript")
+        .args(&["-e", &format!("set volume output volume {volume}")])
+        .output()?;
+    Ok(())
+}
