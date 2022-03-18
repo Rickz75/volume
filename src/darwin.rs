@@ -10,6 +10,8 @@ pub enum Error {
     Io(IoError),
     /// Tried setting the master volume to an invalid amount.
     InvalidVolume(i64),
+    /// Could not parse the result from stdout.
+    Parse(String),
 }
 
 impl std::fmt::Display for Error {
@@ -17,6 +19,7 @@ impl std::fmt::Display for Error {
         match *self {
             Error::Io(ref e) => e.fmt(f),
             Error::InvalidVolume(vol) => write!(f, "could not set the master volume to {}", vol),
+            Error::Parse(ref e) => e.fmt(f),
         }
     }
 }
