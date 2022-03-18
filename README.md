@@ -1,7 +1,7 @@
 <br />
 <div align="center">
     <h1>Volume</h1>
-    <p>A simple CLI used to control the master volume on linux systems.</p>
+    <p>A simple CLI used to control the master volume on linux and macos systems.</p>
 </div>
 
 ## About
@@ -70,5 +70,5 @@ Don't forget to give the project a star! Thanks again!
 
 ### Note
 
--   Only linux systems are supported.
+-   Only linux and macos systems are supported.
 -   Anyone is more than welcome to contribute, even more so if you can improve the C code.
