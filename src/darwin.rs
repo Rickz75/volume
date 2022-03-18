@@ -18,3 +18,9 @@ impl std::fmt::Display for Error {
 }
 
 impl std::error::Error for Error {}
+
+impl From<IoError> for Error {
+    fn from(e: IoError) -> Self {
+        Error::Io(e)
+    }
+}
