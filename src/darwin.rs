@@ -38,3 +38,11 @@ pub fn set(volume: i64) -> Result<()> {
         .output()?;
     Ok(())
 }
+
+/// Mutes the master volume on this system.
+pub fn mute() -> Result<()> {
+    Command::new("osascript")
+        .args(&["-e", "set volume output muted true"])
+        .output()?;
+    Ok(())
+}
