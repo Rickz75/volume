@@ -1,5 +1,7 @@
 use std::io::Error as IoError;
 
+pub type Result<T> = std::result::Result<T, Error>;
+
 /// An error that can occur when controlling the master volume on a macOS system.
 #[derive(Debug)]
 pub enum Error {
