@@ -1,8 +1,5 @@
-mod darwin;
-mod linux;
+#[cfg_attr(target_os = "linux", path = "linux.rs")]
+#[cfg_attr(target_os = "macos", path = "darwin.rs")]
+mod os;
 
-#[cfg(target_os = "linux")]
-pub use linux::*;
-
-#[cfg(target_os = "macos")]
-pub use darwin::*;
+pub use os::*;
