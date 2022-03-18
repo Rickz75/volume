@@ -1,7 +1,7 @@
 <br />
 <div align="center">
     <h1>Volume</h1>
-    <p>A simple CLI used to control the master volume on linux systems.</p>
+    <p>A simple CLI used to control the master volume on linux and macos systems.</p>
 </div>
 
 ## About
@@ -29,7 +29,7 @@ cargo build --release
 
 ## Usage
 
-Consider adding the binary to your path, [like so](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path).
+Consider adding the binary to your path.
 
 Retrieve the master volume.
 
@@ -70,5 +70,5 @@ Don't forget to give the project a star! Thanks again!
 
 ### Note
 
--   Only linux systems are supported.
+-   Only linux and macos systems are supported.
 -   Anyone is more than welcome to contribute, even more so if you can improve the C code.
