@@ -73,3 +73,20 @@ pub fn unmute() -> Result<()> {
         .output()?;
     Ok(())
 }
+
+/// Returns whether or not the master volume is currently muted.
+pub fn is_muted() -> Result<bool> {
+    let output = Command::new("osascript")
+        .args(&["-e", "output muted of (get volume settings)"])
+        .output()?;
+    let stdout = String::from_utf8_lossy(&output.stdout);
+
+    match stdout.trim() {
+        "false" => Ok(false),
+        "true" => Ok(true),
+        out => Err(Error::Parse(format!(
+            "expected true or false from output, but found '{}'",
+            out
+        ))),
+    }
+}
