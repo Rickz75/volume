@@ -8,12 +8,15 @@ pub type Result<T> = std::result::Result<T, Error>;
 pub enum Error {
     /// A standard I/O error.
     Io(IoError),
+    /// Tried setting the master volume to an invalid amount.
+    InvalidVolume(i64),
 }
 
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match *self {
             Error::Io(ref e) => e.fmt(f),
+            Error::InvalidVolume(vol) => write!(f, "could not set the master volume to {}", vol),
         }
     }
 }
