@@ -2,6 +2,7 @@
 name = "volume"
 version = "0.1.0"
 edition = "2018"
+description = "A simple CLI used to control the master volume on linux and macos."
 
 [[bin]]
 name = "volume"
