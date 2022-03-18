@@ -32,6 +32,19 @@ impl From<IoError> for Error {
     }
 }
 
+/// Retrieves the master volume on this system.
+pub fn get() -> Result<i64> {
+    let output = Command::new("osascript")
+        .args(&["-e", "output volume of (get volume settings)"])
+        .output()?;
+    let stdout = String::from_utf8_lossy(&output.stdout);
+
+    stdout
+        .trim()
+        .parse::<i64>()
+        .map_err(|e| Error::Parse(e.to_string()))
+}
+
 /// Sets the master volume for this system.
 ///
 /// Returns an error if volume is less than **0** or greater than **100**.
