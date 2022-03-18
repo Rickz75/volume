@@ -46,3 +46,11 @@ pub fn mute() -> Result<()> {
         .output()?;
     Ok(())
 }
+
+/// Unmutes the master volume on this system.
+pub fn unmute() -> Result<()> {
+    Command::new("osascript")
+        .args(&["-e", "set volume output muted false"])
+        .output()?;
+    Ok(())
+}
