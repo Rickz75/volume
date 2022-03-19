@@ -1,5 +1,11 @@
 use clap::{Parser, Subcommand};
-use volume::Result;
+use volume::{Error, Result};
+
+/// Exits the application, displaying the given error to the user.
+fn exit(err: Error) -> ! {
+    eprintln!("{err}");
+    std::process::exit(1)
+}
 
 /// A simple CLI to control the master volume on linux systems.
 #[derive(Parser)]
