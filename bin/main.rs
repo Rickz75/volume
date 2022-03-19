@@ -1,5 +1,11 @@
 use clap::{Parser, Subcommand};
-use volume::Result;
+use volume::Error;
+
+/// Exits the application, displaying the given error to the user.
+fn exit(err: Error) -> ! {
+    eprintln!("{err}");
+    std::process::exit(1)
+}
 
 /// A simple CLI to control the master volume on linux systems.
 #[derive(Parser)]
@@ -22,15 +28,22 @@ enum Command {
     Unmute,
 }
 
-fn main() -> Result<()> {
+fn main() {
     let args = Cli::parse();
 
-    match args.command {
-        Command::Set { amount } => volume::set(amount)?,
-        Command::Get => println!("{}", volume::get()?),
-        Command::Mute => volume::mute()?,
-        Command::Unmute => volume::unmute()?,
-    }
+    let res = match args.command {
+        Command::Set { amount } => volume::set(amount),
+        Command::Mute => volume::mute(),
+        Command::Unmute => volume::unmute(),
+        Command::Get => {
+            return match volume::get() {
+                Ok(vol) => println!("{}", vol),
+                Err(e) => exit(e),
+            }
+        }
+    };
 
-    Ok(())
+    if let Err(e) = res {
+        exit(e);
+    }
 }
