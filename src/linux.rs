@@ -50,7 +50,7 @@ impl Error {
     }
 }
 
-/// Get the master volume on this system,
+/// Get the master volume on this system.
 pub fn get() -> Result<i64> {
     let mut out = 0;
     let ptr = &mut out as *mut i64;
