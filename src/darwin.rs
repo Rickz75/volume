@@ -4,7 +4,7 @@ use std::process::Command;
 pub type Result<T> = std::result::Result<T, Error>;
 
 /// An error that can occur when controlling the master volume on a macOS system.
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Error {
     /// A standard I/O error.
     Io(IoError),

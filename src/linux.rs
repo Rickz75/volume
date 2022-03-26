@@ -5,7 +5,7 @@ use std::result;
 pub type Result<T> = result::Result<T, Error>;
 
 /// An error that can occur when controlling the master volume on a linux system.
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Error {
     /// Could not find the default card to use as the mixer.
     NoDefault,
@@ -126,5 +126,71 @@ mod alsa {
         pub fn mute() -> i32;
         pub fn unmute() -> i32;
         pub fn is_muted(out: *mut i32) -> i32;
+    }
+}
+
+#[cfg(test)]
+mod linux_tests {
+    use super::{get, is_muted, mute, set, unmute};
+
+    #[test]
+    fn get_works() {
+        assert!(get().is_ok())
+    }
+
+    #[test]
+    fn set_works() {
+        assert!(set(35).is_ok())
+    }
+
+    #[test]
+    fn mute_works() {
+        assert!(mute().is_ok());
+    }
+
+    #[test]
+    fn unmute_works() {
+        assert!(unmute().is_ok());
+    }
+
+    #[test]
+    fn is_muted_works() {
+        assert!(is_muted().is_ok());
+    }
+
+    #[test]
+    fn set_bounds_are_handled() {
+        assert!(set(-15).is_err());
+        assert!(set(115).is_err());
+    }
+
+    #[test]
+    fn get_and_set_consistency() {
+        set(30).unwrap();
+
+        assert_eq!(get(), Ok(30));
+
+        set(35).unwrap();
+
+        assert_eq!(get(), Ok(35));
+
+        set(37).unwrap();
+
+        assert_eq!(get(), Ok(37));
+    }
+
+    #[test]
+    fn mute_and_unmute_consistency() {
+        mute().unwrap();
+
+        assert_eq!(is_muted(), Ok(true));
+
+        unmute().unwrap();
+
+        assert_eq!(is_muted(), Ok(false));
+
+        unmute().unwrap();
+
+        assert_eq!(is_muted(), Ok(false));
     }
 }

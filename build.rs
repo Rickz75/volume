@@ -7,5 +7,6 @@ fn main() {
             panic!("{}", e);
         }
         cc::Build::new().file("src/native/alsa.c").compile("alsa");
+        println!("cargo:rustc-link-lib=asound");
     }
 }
