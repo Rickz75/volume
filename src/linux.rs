@@ -5,7 +5,7 @@ use std::result;
 pub type Result<T> = result::Result<T, Error>;
 
 /// An error that can occur when controlling the master volume on a linux system.
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Error {
     /// Could not find the default card to use as the mixer.
     NoDefault,
